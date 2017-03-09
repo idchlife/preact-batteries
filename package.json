@@ -5,7 +5,7 @@
   "main": "./dist/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "tsc ./src/index.ts --outDir ./dist -p ./src/tsconfig.json"
+    "build": "tsc ./src/index.ts --outDir ./dist -w -d"
   },
   "repository": {
     "type": "git",
@@ -27,6 +27,8 @@
   },
   "homepage": "https://github.com/idchlife/preact-batteries#readme",
   "devDependencies": {
+    "@types/core-js": "^0.9.36",
+    "core-js": "^2.4.1",
     "dts-generator": "^2.1.0",
     "ts-loader": "^2.0.1",
     "typescript": "^2.2.1",
