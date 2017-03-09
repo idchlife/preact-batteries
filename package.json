@@ -18,7 +18,7 @@
     "batteries",
     "mixins"
   ],
-  "types": "./src/preact-batteries.d.ts",
+  "types": "./dist/preact-batteries.d.ts",
   "author": "idchlife",
   "license": "ISC",
   "bugs": {
