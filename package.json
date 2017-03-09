@@ -5,7 +5,7 @@
   "main": "./dist/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "tsc ./src/index.ts --outDir ./dist -w -d"
+    "build": "tsc -p ./src"
   },
   "repository": {
     "type": "git",
@@ -19,7 +19,7 @@
     "batteries",
     "mixins"
   ],
-  "types": "./dist/index.d.ts",
+  "types": "./dist/types.d.ts",
   "author": "idchlife",
   "license": "ISC",
   "bugs": {
