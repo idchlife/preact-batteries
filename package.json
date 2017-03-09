@@ -1,0 +1,32 @@
+{
+  "name": "preact-batteries",
+  "version": "0.1.0",
+  "description": "Batteries for you projects with Preact, TypeScript (or Babel)",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/idchlife/preact-batteries.git"
+  },
+  "keywords": [
+    "preact",
+    "typescript",
+    "flux",
+    "react",
+    "batteries",
+    "mixins"
+  ],
+  "typings": "index.ts",
+  "author": "idchlife",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/idchlife/preact-batteries/issues"
+  },
+  "homepage": "https://github.com/idchlife/preact-batteries#readme",
+  "devDependencies": {
+    "ts-loader": "^2.0.1",
+    "typescript": "^2.2.1"
+  }
+}
