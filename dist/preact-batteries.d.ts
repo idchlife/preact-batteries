@@ -47,9 +47,20 @@ declare module 'preact-batteries/component-modules/auth-dependent-component' {
 	}
 
 }
+declare module 'preact-batteries/dispatchers/simple-dispatcher' {
+	 class Dispatcher {
+	    callbacks: any[];
+	    register(callback: (payload: any) => void): void;
+	    dispatch(payload: any): void;
+	}
+	export default Dispatcher;
+
+}
 declare module 'preact-batteries/index' {
 	export { AuthDependentComponent, AuthenticationStoreInterface } from 'preact-batteries/component-modules/auth-dependent-component';
 	export { modules, CompatibleComponentInterface, ComponentModule } from 'preact-batteries/component-modules/module-system';
+	import SimpleDispatcher from 'preact-batteries/dispatchers/simple-dispatcher';
+	export { SimpleDispatcher };
 
 }
 declare module 'preact-batteries' {
