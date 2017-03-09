@@ -1,9 +1,10 @@
 import {
   CompatibleComponentInterface,
-  ComponentModule
+  ComponentModule,
+  
 } from "./module-system";
 
-interface StoreInterface {
+export interface StoreInterface {
   addChangeListener(listener: Function);
   removeChangeListener(listener: Function);
 }
@@ -13,7 +14,7 @@ export interface AuthenticationStoreInterface extends StoreInterface {
   isAuthenticated(): boolean;
 }
 
-interface AuthModuleContructorObject {
+export interface AuthModuleContructorObject {
   // Store, where will be checked authentication status
   store: AuthenticationStoreInterface;
   // Does this component need authentication to work
