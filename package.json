@@ -3,9 +3,10 @@
   "version": "0.1.7",
   "description": "Batteries for you projects with Preact, TypeScript (or Babel)",
   "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "tsc -p ./src"
+    "build": "tsc -p ./src --traceModuleResolution"
   },
   "repository": {
     "type": "git",
@@ -19,7 +20,6 @@
     "batteries",
     "mixins"
   ],
-  "types": "./dist/types.d.ts",
   "author": "idchlife",
   "license": "ISC",
   "bugs": {
