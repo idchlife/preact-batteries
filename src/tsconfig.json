@@ -5,15 +5,12 @@
     "jsx": "react",
     "jsxFactory": "h",
     "lib": ["es6", "es5", "es2015.promise", "es2015.core"],
-    "module": "umd",
-    "typeRoots": ["./declarations", "../node_modules/@types"],
+    "module": "commonjs",
+    "types": [],
     "outDir": "../dist/",
     "declarationDir": "../dist/",
     "declaration": true
   },
-  "filesGlob": [
-    "./**/*.ts"
-  ],
   "files": [
       "./index.ts"
   ]
