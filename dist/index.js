@@ -44,11 +44,12 @@
 /* 0 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__, exports, __webpack_require__(1), __webpack_require__(2)], __WEBPACK_AMD_DEFINE_RESULT__ = function (require, exports, auth_dependent_component_1, module_system_1) {
+	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__, exports, __webpack_require__(1), __webpack_require__(2), __webpack_require__(3)], __WEBPACK_AMD_DEFINE_RESULT__ = function (require, exports, auth_dependent_component_1, module_system_1, simple_dispatcher_1) {
 	    "use strict";
 	    Object.defineProperty(exports, "__esModule", { value: true });
 	    exports.AuthDependentComponent = auth_dependent_component_1.AuthDependentComponent;
 	    exports.modules = module_system_1.modules;
+	    exports.SimpleDispatcher = simple_dispatcher_1.default;
 	}.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
 
@@ -153,6 +154,29 @@
 	        modules.forEach(function (m) { return m.init(component); });
 	    }
 	    exports.modules = modules;
+	}.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+
+
+/***/ },
+/* 3 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__, exports], __WEBPACK_AMD_DEFINE_RESULT__ = function (require, exports) {
+	    "use strict";
+	    Object.defineProperty(exports, "__esModule", { value: true });
+	    var Dispatcher = (function () {
+	        function Dispatcher() {
+	            this.callbacks = [];
+	        }
+	        Dispatcher.prototype.register = function (callback) {
+	            this.callbacks.push(callback);
+	        };
+	        Dispatcher.prototype.dispatch = function (payload) {
+	            this.callbacks.forEach(function (c) { return c(payload); });
+	        };
+	        return Dispatcher;
+	    }());
+	    exports.default = Dispatcher;
 	}.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
 

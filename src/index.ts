@@ -8,3 +8,9 @@ export {
   CompatibleComponentInterface,
   ComponentModule
 } from "./component-modules/module-system";
+
+import SimpleDispatcher from "./dispatchers/simple-dispatcher";
+
+export {
+  SimpleDispatcher
+}
