@@ -50,4 +50,9 @@ declare module 'preact-batteries/component-modules/auth-dependent-component' {
 declare module 'preact-batteries/index' {
 	export { AuthDependentComponent, AuthenticationStoreInterface } from 'preact-batteries/component-modules/auth-dependent-component';
 	export { modules, CompatibleComponentInterface, ComponentModule } from 'preact-batteries/component-modules/module-system';
+
+}
+declare module 'preact-batteries' {
+	import main = require('preact-batteries/index');
+	export = main;
 }

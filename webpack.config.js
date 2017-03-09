@@ -1,5 +1,7 @@
 'use strict'
 
+const WebpackShellPlugin = require('webpack-shell-plugin');
+
 module.exports = {
   entry: './src/index.ts',
   output: {
@@ -17,5 +19,12 @@ module.exports = {
   },
   resolve: {
     extensions: ['', '.ts', '.tsx']
-  }
+  },
+  plugins: [
+    new WebpackShellPlugin({
+      onBuildEnd: [
+        'node generate-definitions.js'
+      ]
+    })
+  ]
 };
