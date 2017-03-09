@@ -4,7 +4,8 @@
   "description": "Batteries for you projects with Preact, TypeScript (or Babel)",
   "main": "./dist/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "tsc ./src/index.ts --outDir ./dist -p ./src/tsconfig.json"
   },
   "repository": {
     "type": "git",
