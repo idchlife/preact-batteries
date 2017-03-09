@@ -1,9 +1,9 @@
 'use strict'
 
 module.exports = {
-  entry: './index.ts',
+  entry: './src/index.ts',
   output: {
-    filename: './index.js'
+    filename: './dist/index.js'
   },
   module: {
     loaders: [

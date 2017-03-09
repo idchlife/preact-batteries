@@ -9,8 +9,7 @@
     "module": "amd",
     "moduleResolution": "classic",
     "types": [],
-    "typeRoots": ["./declarations", "../node_modules/@types"],
-    "declaration": true
+    "typeRoots": ["./declarations", "../node_modules/@types"]
   },
   "filesGlob": [
     "./**/*.ts"
