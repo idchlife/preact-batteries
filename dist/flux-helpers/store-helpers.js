@@ -24,6 +24,9 @@ var NodeEventsStore = (function (_super) {
     NodeEventsStore.prototype.removeChangeListener = function (listener) {
         this.removeListener(CHANGE_EVENT, listener);
     };
+    NodeEventsStore.prototype.emitChange = function () {
+        this.emit(CHANGE_EVENT);
+    };
     return NodeEventsStore;
 }(events_1.EventEmitter));
 exports.NodeEventsStore = NodeEventsStore;
@@ -36,6 +39,9 @@ var MittStore = (function () {
     };
     MittStore.prototype.removeChangeListener = function (listener) {
         this.mitt.off(CHANGE_EVENT, listener);
+    };
+    MittStore.prototype.emitChange = function () {
+        this.mitt.emit(CHANGE_EVENT);
     };
     return MittStore;
 }());

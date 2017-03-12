@@ -11,6 +11,10 @@ export class NodeEventsStore extends EventEmitter {
   removeChangeListener(listener: Function) {
     this.removeListener(CHANGE_EVENT, listener);
   }
+
+  emitChange() {
+    this.emit(CHANGE_EVENT);
+  }
 }
 
 export class MittStore {
@@ -22,5 +26,9 @@ export class MittStore {
 
   removeChangeListener(listener: Function) {
     this.mitt.off(CHANGE_EVENT, listener as mitt.Handler);
+  }
+
+  emitChange() {
+    this.mitt.emit(CHANGE_EVENT);
   }
 }

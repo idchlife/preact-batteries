@@ -1,7 +1,6 @@
 import {
   CompatibleComponentInterface,
   ComponentModule,
-  
 } from "./module-system";
 
 export interface StoreInterface {
