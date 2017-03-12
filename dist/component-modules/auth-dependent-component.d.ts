@@ -2,7 +2,7 @@ import { CompatibleComponentInterface, ComponentModule } from "./module-system";
 export interface StoreInterface {
     addChangeListener(listener: Function): any;
     removeChangeListener(listener: Function): any;
-    getState(): any;
+    getState?(): any;
 }
 export interface AuthenticationStoreInterface extends StoreInterface {
     checkingAuthenticationStatus(): boolean;
