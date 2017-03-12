@@ -106,7 +106,7 @@ export class StoreListener {
       = (this.store.getState 
         && typeof this.store.getState === "function"
         && typeof this.store.getState() === "object"
-        && this.store.getState()[property]) ? true : false;
+        && this.store.getState().hasOwnProperty(property)) ? true : false;
 
     if (
       typeof this.store[property] === "undefined"
