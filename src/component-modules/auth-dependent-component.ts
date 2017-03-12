@@ -7,6 +7,7 @@ import {
 export interface StoreInterface {
   addChangeListener(listener: Function);
   removeChangeListener(listener: Function);
+  getState(): any;
 }
 
 export interface AuthenticationStoreInterface extends StoreInterface {

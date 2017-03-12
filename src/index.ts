@@ -1,6 +1,7 @@
 export {
   AuthDependentComponent,
   AuthenticationStoreInterface,
+  StoreInterface
 } from "./component-modules/auth-dependent-component";
 
 export {
@@ -14,3 +15,12 @@ import SimpleDispatcher from "./dispatchers/simple-dispatcher";
 export {
   SimpleDispatcher
 }
+
+export {
+  StoreListener
+} from "./flux-helpers/store-component-helpers";
+
+export {
+  NodeEventsStore,
+  MittStore
+} from "./flux-helpers/store-helpers";
