@@ -71,10 +71,10 @@ var StoreListener = (function () {
             }
         }
         var getterMethod = "get" + property.charAt(0).toUpperCase() + property.slice(1);
-        var stateProperty = this.store.getState
+        var stateProperty = (this.store.getState
             && typeof this.store.getState === "function"
             && typeof this.store.getState() === "object"
-            && this.store.getState()[property];
+            && this.store.getState()[property]) ? true : false;
         if (typeof this.store[property] === "undefined"
             &&
                 typeof this.store[getterMethod] === "undefined"
