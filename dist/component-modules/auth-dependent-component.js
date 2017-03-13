@@ -5,7 +5,7 @@ var AUTH_STATUS_ANONYMOUS = false;
 var AUTH_STATUC_CHECK_IN_PROGRESS = undefined;
 var AUTH_STATE_PARAM = "m_Auth_Bool__";
 var AUTH_CHECK_STATE_PARAM = "m_Auth_Check_Bool__";
-var AuthDependentComponent = (function () {
+var AuthDependentComponentModule = (function () {
     /**
      * isUserAuthenticated - promise that returns, whether user is authenticated;
      * async because we don't know and don't want to stop main UI thread when
@@ -13,14 +13,14 @@ var AuthDependentComponent = (function () {
      *
      * needsAuth - needs this component authentication, or not
      */
-    function AuthDependentComponent(params) {
+    function AuthDependentComponentModule(params) {
         this.store = params.store;
         this.needsAuth = params.needsAuth;
         this.authCheckInProcessRenderReturn = params.authCheckInProcessRenderReturn;
         this.authStatusNotAllowedCallback = params.authStatusNotAllowedCallback;
         this.authStatusNotAllowedRenderReturn = params.authStatusNotAllowedRenderReturn;
     }
-    AuthDependentComponent.prototype.init = function (c) {
+    AuthDependentComponentModule.prototype.init = function (c) {
         var oldRender = c.render;
         var _a = this, authCheckInProcessRenderReturn = _a.authCheckInProcessRenderReturn, authStatusNotAllowedCallback = _a.authStatusNotAllowedCallback, authStatusNotAllowedRenderReturn = _a.authStatusNotAllowedRenderReturn, needsAuth = _a.needsAuth, store = _a.store;
         // Default value to be authenticated or not
@@ -76,6 +76,6 @@ var AuthDependentComponent = (function () {
         };
         var _b;
     };
-    return AuthDependentComponent;
+    return AuthDependentComponentModule;
 }());
-exports.AuthDependentComponent = AuthDependentComponent;
+exports.AuthDependentComponentModule = AuthDependentComponentModule;

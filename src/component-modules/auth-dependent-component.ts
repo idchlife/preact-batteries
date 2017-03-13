@@ -36,7 +36,7 @@ const AUTH_STATUC_CHECK_IN_PROGRESS = undefined;
 const AUTH_STATE_PARAM = "m_Auth_Bool__";
 const AUTH_CHECK_STATE_PARAM = "m_Auth_Check_Bool__";
 
-export class AuthDependentComponent implements AuthModuleContructorObject, ComponentModule<CompatibleComponentInterface<any, any>> {
+export class AuthDependentComponentModule implements AuthModuleContructorObject, ComponentModule<CompatibleComponentInterface<any, any>> {
   store: AuthenticationStoreInterface;
   needsAuth: boolean;
   authCheckInProcessRenderReturn;

@@ -1,4 +1,4 @@
-export { AuthDependentComponent, AuthenticationStoreInterface, StoreInterface } from "./component-modules/auth-dependent-component";
+export { AuthDependentComponentModule, AuthenticationStoreInterface, StoreInterface } from "./component-modules/auth-dependent-component";
 export { modules, CompatibleComponentInterface, ComponentModule } from "./component-modules/module-system";
 import SimpleDispatcher from "./dispatchers/simple-dispatcher";
 export { SimpleDispatcher };

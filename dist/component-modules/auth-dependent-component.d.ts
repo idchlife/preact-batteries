@@ -15,7 +15,7 @@ export interface AuthModuleContructorObject {
     authStatusNotAllowedCallback: Function;
     authStatusNotAllowedRenderReturn: any;
 }
-export declare class AuthDependentComponent implements AuthModuleContructorObject, ComponentModule<CompatibleComponentInterface<any, any>> {
+export declare class AuthDependentComponentModule implements AuthModuleContructorObject, ComponentModule<CompatibleComponentInterface<any, any>> {
     store: AuthenticationStoreInterface;
     needsAuth: boolean;
     authCheckInProcessRenderReturn: any;

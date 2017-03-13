@@ -1,5 +1,5 @@
 export {
-  AuthDependentComponent,
+  AuthDependentComponentModule,
   AuthenticationStoreInterface,
   StoreInterface
 } from "./component-modules/auth-dependent-component";
