@@ -123,4 +123,45 @@ class MyStore extends MittStore {
 }
 ```
 
-... more to come
+### - store-component-helpers
+
+If you have store as in Flux, which is EventEmitter and also have components - you might want
+to use some helpers which would reduce boilerplate, but would do it transparently and without
+any huge magic parts.
+
+##### StoreListener
+
+This class is designed to help you adding listeners for store properties for your component.
+Example of usage:
+
+```typescript
+import { StoreListener } from "preact-batteries";
+
+interface State {
+  authenticated?: boolean | undefined;
+  somethingElse?: any;
+}
+
+export default class Routing extends Component<undefined, State> {
+  constructor() {
+    super();
+
+    new StoreListener(this, AuthStore)
+      .add('authenticated')
+      .add('somethingElse')
+      .listen();
+  }
+}
+```
+
+StoreListener will listen to change event from your store and update state of
+this component with fresh property/ies value
+
+After change event, StoreListener will try to find out, how to get your property from state.
+It will try to access getState() from store and check whether it is object, which can be
+accessed for property.
+Also it will try to check if there is getter for this property in store, like getSomethingElse().
+You can also pass as second argument to .add - customGetterName, which also would be used to
+get property.
+And at last, StoreListener will try to access property as it was just public property
+of your store object.
