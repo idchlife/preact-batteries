@@ -1,6 +1,6 @@
 {
   "name": "preact-batteries",
-  "version": "0.1.18",
+  "version": "0.1.19",
   "description": "Batteries for you projects with Preact, TypeScript (or Babel)",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
