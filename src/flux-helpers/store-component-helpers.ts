@@ -73,7 +73,7 @@ export class StoreListener {
     c.componentWillMount = function() {
       store.addChangeListener(changeListener);
 
-      oldComponentWillMount.call(this);
+      oldComponentWillMount && oldComponentWillMount.call(this);
     }.bind(c);
 
     const oldComponentWillUnmount = c.componentWillUnmount;
@@ -81,7 +81,7 @@ export class StoreListener {
     c.componentWillUnmount = function() {
       store.removeChangeListener(changeListener);
 
-      oldComponentWillUnmount.call(this);
+      oldComponentWillUnmount && oldComponentWillUnmount.call(this);
     }.bind(c);
   }
 

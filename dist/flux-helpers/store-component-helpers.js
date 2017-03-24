@@ -50,13 +50,13 @@ var StoreListener = (function () {
         }.bind(c);
         c.componentWillMount = function () {
             store.addChangeListener(changeListener);
-            oldComponentWillMount.call(this);
+            oldComponentWillMount && oldComponentWillMount.call(this);
         }.bind(c);
         var oldComponentWillUnmount = c.componentWillUnmount;
         store.removeChangeListener(changeListener);
         c.componentWillUnmount = function () {
             store.removeChangeListener(changeListener);
-            oldComponentWillUnmount.call(this);
+            oldComponentWillUnmount && oldComponentWillUnmount.call(this);
         }.bind(c);
     };
     StoreListener.prototype.getPropertyFromStore = function (property, customGetter, onlyCheckAvailability) {
