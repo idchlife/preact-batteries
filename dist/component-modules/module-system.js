@@ -14,7 +14,7 @@ function listenMethodForErrors(context, methodName, onError) {
             args[_i] = arguments[_i];
         }
         try {
-            old.call.apply(old, [context].concat(args));
+            old && old.call.apply(old, [context].concat(args));
         }
         catch (e) {
             if (onError) {

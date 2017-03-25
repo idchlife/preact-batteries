@@ -26,7 +26,7 @@ export function listenMethodForErrors(
 
   context[methodName] = function(...args) {
     try {
-      old.call(context, ...args);
+      old && old.call(context, ...args);
     } catch (e) {
       if (onError) {
         onError.call(context, e);

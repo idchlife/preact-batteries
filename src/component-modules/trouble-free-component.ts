@@ -10,13 +10,15 @@ function renderFunction() {
   return ERROR_MESSAGE;
 }
 
-function onErrorFunc() {
+function onErrorFunc(e: Error) {
   this.render = renderFunction;
 
   console.error(
     `[preact-batteries.troube-free-component]: you had error in one of your methods in component.
-    You can distinguish one with error by looking at your interface. It should show ${ERROR_MESSAGE}`
+    You can distinguish one with error by looking at your interface. It should show ${ERROR_MESSAGE}. Also, here is
+    error message. Logging error after this message.`
   );
+  console.error(e);
 }
 
 function onAppearedErrorFunc(e: Error) {
