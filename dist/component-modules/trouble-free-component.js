@@ -55,7 +55,7 @@ function onErrorFunc(e) {
     this.render = renderFunction;
     console.error("[preact-batteries.troube-free-component]: you had error in one of your methods in component.\n    You can distinguish one with error by looking at your interface. It should show " + ERROR_MESSAGE + ". Also, here is\n    error message. Logging error after this message.");
     if (e instanceof Error) {
-        console.error(e.name, e.message, e.stack);
+        console.error(e.stack);
     }
     else {
         console.error(e);
