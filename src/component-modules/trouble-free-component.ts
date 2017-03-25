@@ -1,8 +1,47 @@
 import {
   CompatibleComponentInterface,
-  ComponentModule,
-  listenMethodForErrors
+  ComponentModule
 } from "./module-system";
+
+class RenderMethodNotDefinedError extends Error {
+  constructor() {
+    super(
+      "[preact-batteries.trouble-free-component]: render method in your component is not defined"
+    );
+  }
+}
+
+/**
+ * This function allows you to easily wrap your method with
+ * try catch which will trigger your onError listener, which will
+ * be called then within a context of class. Useful when you want intercept
+ * errors among several (or all) methods of your class
+ */
+export function listenComponentMethodForErrors(
+  context,
+  methodName: string,
+  onError?: (e: Error) => void
+) {
+  const old: Function | undefined = context[methodName];
+
+  if (methodName === "render" && !old) {
+    throw new RenderMethodNotDefinedError();
+  }
+
+  context[methodName] = function(...args) {
+    try {
+      if (methodName === "render") {
+        return old.call(context, ...args);
+      }
+      
+      old && old.call(context, ...args);
+    } catch (e) {
+      if (onError) {
+        onError.call(context, e);
+      }
+    }
+  }.bind(context);
+}
 
 const ERROR_MESSAGE = "[CRITICAL ERROR]";
 
@@ -39,10 +78,10 @@ function onAppearedErrorFunc(e: Error) {
 
 export class TroubleFreeComponent implements ComponentModule<CompatibleComponentInterface<any, any>> {
   public init(c: CompatibleComponentInterface<any, any>) {
-    listenMethodForErrors(c, "componentWillMount", onErrorFunc);
-    listenMethodForErrors(c, "componentDidMount", onAppearedErrorFunc);
-    listenMethodForErrors(c, "componentWillReceiveProps", onErrorFunc);
-    listenMethodForErrors(c, "shouldComponentUpdate", onErrorFunc);
-    listenMethodForErrors(c, "render", onAppearedErrorFunc);
+    listenComponentMethodForErrors(c, "componentWillMount", onErrorFunc);
+    listenComponentMethodForErrors(c, "componentDidMount", onAppearedErrorFunc);
+    listenComponentMethodForErrors(c, "componentWillReceiveProps", onErrorFunc);
+    listenComponentMethodForErrors(c, "shouldComponentUpdate", onErrorFunc);
+    listenComponentMethodForErrors(c, "render", onAppearedErrorFunc);
   }
 }
