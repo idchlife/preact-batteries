@@ -49,7 +49,7 @@ function renderFunction() {
   return ERROR_MESSAGE;
 }
 
-function onErrorFunc(e: Error) {
+function onErrorFunc(e: Error | string) {
   this.render = renderFunction;
 
   console.error(
@@ -57,7 +57,12 @@ function onErrorFunc(e: Error) {
     You can distinguish one with error by looking at your interface. It should show ${ERROR_MESSAGE}. Also, here is
     error message. Logging error after this message.`
   );
-  console.error(e.name, e.message, e.stack);
+  
+  if (e instanceof Error) {
+    console.error(e.name, e.message, e.stack);
+  } else {
+    console.error(e);
+  }
 }
 
 function onAppearedErrorFunc(e: Error) {
