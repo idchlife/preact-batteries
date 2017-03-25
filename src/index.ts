@@ -5,6 +5,10 @@ export {
 } from "./component-modules/auth-dependent-component";
 
 export {
+  TroubleFreeComponent
+} from "./component-modules/trouble-free-component";
+
+export {
   modules,
   CompatibleComponentInterface,
   ComponentModule

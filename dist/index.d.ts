@@ -1,4 +1,5 @@
 export { AuthDependentComponentModule, AuthenticationStoreInterface, StoreInterface } from "./component-modules/auth-dependent-component";
+export { TroubleFreeComponent } from "./component-modules/trouble-free-component";
 export { modules, CompatibleComponentInterface, ComponentModule } from "./component-modules/module-system";
 import SimpleDispatcher from "./dispatchers/simple-dispatcher";
 export { SimpleDispatcher };
