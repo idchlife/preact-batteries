@@ -69,7 +69,7 @@ function onAppearedErrorFunc(e: Error) {
   if (this.forceUpdate) {
     onErrorFunc.call(this, e);
 
-    this.setState({ error: Math.random() * 1000 });
+    this.setState({ __error_state_7: Math.random() * 1000 });
   } else {
     console.warn(
       `[preact-batteries.trouble-free-component]: component did not have forceUpdate method,
