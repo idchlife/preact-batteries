@@ -89,11 +89,11 @@ export class AuthDependentComponentModule implements AuthModuleContructorObject,
       }
 
       if (needsAuth && authStatus === AUTH_STATUS_AUTHENTICATED) {
-        authStatusSuccessCallback();
+        authStatusSuccessCallback && authStatusSuccessCallback();
 
         return oldRender.call(this, ...args);
       } else if (!needsAuth && authStatus === AUTH_STATUS_ANONYMOUS) {
-        authStatusSuccessCallback();
+        authStatusSuccessCallback && authStatusSuccessCallback();
         
         return oldRender.call(this, ...args);
       } else {

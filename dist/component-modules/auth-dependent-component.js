@@ -40,11 +40,11 @@ var AuthDependentComponentModule = (function () {
                 return authCheckInProcessRenderReturn;
             }
             if (needsAuth && authStatus === AUTH_STATUS_AUTHENTICATED) {
-                authStatusSuccessCallback();
+                authStatusSuccessCallback && authStatusSuccessCallback();
                 return oldRender.call.apply(oldRender, [this].concat(args));
             }
             else if (!needsAuth && authStatus === AUTH_STATUS_ANONYMOUS) {
-                authStatusSuccessCallback();
+                authStatusSuccessCallback && authStatusSuccessCallback();
                 return oldRender.call.apply(oldRender, [this].concat(args));
             }
             else {
