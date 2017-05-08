@@ -37,6 +37,7 @@ const AUTH_STATUC_CHECK_IN_PROGRESS = undefined;
 
 const AUTH_STATE_PARAM = "m_Auth_Bool__";
 const AUTH_CHECK_STATE_PARAM = "m_Auth_Check_Bool__";
+const AUTH_STATUS_SUCCESS_CALLBACK_CALLED = "m_Auth_Status_Success_callback_called__"
 
 export class AuthDependentComponentModule implements AuthModuleContructorObject, ComponentModule<CompatibleComponentInterface<any, any>> {
   store: AuthenticationStoreInterface;
@@ -65,6 +66,9 @@ export class AuthDependentComponentModule implements AuthModuleContructorObject,
   init(c: CompatibleComponentInterface<any, any>) {
     const oldRender: Function = c.render;
 
+    // Working with prototype directly, because we don't want to reactivate render for this
+    c[AUTH_STATUS_SUCCESS_CALLBACK_CALLED] = false;
+
     const {
       authCheckInProcessRenderReturn,
       authStatusNotAllowedCallback,
@@ -88,13 +92,17 @@ export class AuthDependentComponentModule implements AuthModuleContructorObject,
         return authCheckInProcessRenderReturn;
       }
 
-      if (needsAuth && authStatus === AUTH_STATUS_AUTHENTICATED) {
-        authStatusSuccessCallback && authStatusSuccessCallback();
+      if (
+        (needsAuth && authStatus === AUTH_STATUS_AUTHENTICATED)
+        ||
+        (!needsAuth && authStatus === AUTH_STATUS_ANONYMOUS)
+      ) {
+        if (!c[AUTH_STATUS_SUCCESS_CALLBACK_CALLED]) {
+          c[AUTH_STATUS_SUCCESS_CALLBACK_CALLED] = true;
 
-        return oldRender.call(this, ...args);
-      } else if (!needsAuth && authStatus === AUTH_STATUS_ANONYMOUS) {
-        authStatusSuccessCallback && authStatusSuccessCallback();
-        
+          authStatusSuccessCallback();
+        }
+
         return oldRender.call(this, ...args);
       } else {
         if (typeof authStatusNotAllowedCallback !== "function") {

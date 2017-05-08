@@ -5,6 +5,7 @@ var AUTH_STATUS_ANONYMOUS = false;
 var AUTH_STATUC_CHECK_IN_PROGRESS = undefined;
 var AUTH_STATE_PARAM = "m_Auth_Bool__";
 var AUTH_CHECK_STATE_PARAM = "m_Auth_Check_Bool__";
+var AUTH_STATUS_SUCCESS_CALLBACK_CALLED = "m_Auth_Status_Success_callback_called__";
 var AuthDependentComponentModule = (function () {
     /**
      * isUserAuthenticated - promise that returns, whether user is authenticated;
@@ -23,6 +24,8 @@ var AuthDependentComponentModule = (function () {
     }
     AuthDependentComponentModule.prototype.init = function (c) {
         var oldRender = c.render;
+        // Working with prototype directly, because we don't want to reactivate render for this
+        c[AUTH_STATUS_SUCCESS_CALLBACK_CALLED] = false;
         var _a = this, authCheckInProcessRenderReturn = _a.authCheckInProcessRenderReturn, authStatusNotAllowedCallback = _a.authStatusNotAllowedCallback, authStatusSuccessCallback = _a.authStatusSuccessCallback, authStatusNotAllowedRenderReturn = _a.authStatusNotAllowedRenderReturn, needsAuth = _a.needsAuth, store = _a.store;
         // Default value to be authenticated or not
         c.state = Object.assign({}, c.state, (_b = {},
@@ -39,12 +42,13 @@ var AuthDependentComponentModule = (function () {
             if (authStatus === AUTH_STATUC_CHECK_IN_PROGRESS) {
                 return authCheckInProcessRenderReturn;
             }
-            if (needsAuth && authStatus === AUTH_STATUS_AUTHENTICATED) {
-                authStatusSuccessCallback && authStatusSuccessCallback();
-                return oldRender.call.apply(oldRender, [this].concat(args));
-            }
-            else if (!needsAuth && authStatus === AUTH_STATUS_ANONYMOUS) {
-                authStatusSuccessCallback && authStatusSuccessCallback();
+            if ((needsAuth && authStatus === AUTH_STATUS_AUTHENTICATED)
+                ||
+                    (!needsAuth && authStatus === AUTH_STATUS_ANONYMOUS)) {
+                if (!c[AUTH_STATUS_SUCCESS_CALLBACK_CALLED]) {
+                    c[AUTH_STATUS_SUCCESS_CALLBACK_CALLED] = true;
+                    authStatusSuccessCallback();
+                }
                 return oldRender.call.apply(oldRender, [this].concat(args));
             }
             else {
