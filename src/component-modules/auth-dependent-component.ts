@@ -99,8 +99,10 @@ export class AuthDependentComponentModule implements AuthModuleContructorObject,
       ) {
         if (!c[AUTH_STATUS_SUCCESS_CALLBACK_CALLED]) {
           c[AUTH_STATUS_SUCCESS_CALLBACK_CALLED] = true;
+          
+          const a = authStatusSuccessCallback;
 
-          authStatusSuccessCallback();
+          a && a();
         }
 
         return oldRender.call(this, ...args);

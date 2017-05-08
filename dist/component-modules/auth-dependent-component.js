@@ -47,7 +47,8 @@ var AuthDependentComponentModule = (function () {
                     (!needsAuth && authStatus === AUTH_STATUS_ANONYMOUS)) {
                 if (!c[AUTH_STATUS_SUCCESS_CALLBACK_CALLED]) {
                     c[AUTH_STATUS_SUCCESS_CALLBACK_CALLED] = true;
-                    authStatusSuccessCallback();
+                    var a = authStatusSuccessCallback;
+                    a && a();
                 }
                 return oldRender.call.apply(oldRender, [this].concat(args));
             }
