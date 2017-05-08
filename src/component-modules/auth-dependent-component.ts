@@ -27,6 +27,8 @@ export interface AuthModuleContructorObject {
   authStatusNotAllowedCallback: Function;
   // Often this should be similar to 
   authStatusNotAllowedRenderReturn: any;
+  // Useful for preloading data
+  authStatusSuccessCallback?: Function;
 }
 
 const AUTH_STATUS_AUTHENTICATED = true;
@@ -42,6 +44,7 @@ export class AuthDependentComponentModule implements AuthModuleContructorObject,
   authCheckInProcessRenderReturn;
   authStatusNotAllowedCallback;
   authStatusNotAllowedRenderReturn;
+  authStatusSuccessCallback;
 
   /**
    * isUserAuthenticated - promise that returns, whether user is authenticated;
@@ -56,6 +59,7 @@ export class AuthDependentComponentModule implements AuthModuleContructorObject,
     this.authCheckInProcessRenderReturn = params.authCheckInProcessRenderReturn;
     this.authStatusNotAllowedCallback = params.authStatusNotAllowedCallback;
     this.authStatusNotAllowedRenderReturn = params.authStatusNotAllowedRenderReturn;
+    this.authStatusSuccessCallback = params.authStatusSuccessCallback;
   }
   
   init(c: CompatibleComponentInterface<any, any>) {
@@ -64,6 +68,7 @@ export class AuthDependentComponentModule implements AuthModuleContructorObject,
     const {
       authCheckInProcessRenderReturn,
       authStatusNotAllowedCallback,
+      authStatusSuccessCallback,
       authStatusNotAllowedRenderReturn,
       needsAuth,
       store
@@ -84,8 +89,12 @@ export class AuthDependentComponentModule implements AuthModuleContructorObject,
       }
 
       if (needsAuth && authStatus === AUTH_STATUS_AUTHENTICATED) {
+        authStatusSuccessCallback();
+
         return oldRender.call(this, ...args);
       } else if (!needsAuth && authStatus === AUTH_STATUS_ANONYMOUS) {
+        authStatusSuccessCallback();
+        
         return oldRender.call(this, ...args);
       } else {
         if (typeof authStatusNotAllowedCallback !== "function") {

@@ -19,10 +19,11 @@ var AuthDependentComponentModule = (function () {
         this.authCheckInProcessRenderReturn = params.authCheckInProcessRenderReturn;
         this.authStatusNotAllowedCallback = params.authStatusNotAllowedCallback;
         this.authStatusNotAllowedRenderReturn = params.authStatusNotAllowedRenderReturn;
+        this.authStatusSuccessCallback = params.authStatusSuccessCallback;
     }
     AuthDependentComponentModule.prototype.init = function (c) {
         var oldRender = c.render;
-        var _a = this, authCheckInProcessRenderReturn = _a.authCheckInProcessRenderReturn, authStatusNotAllowedCallback = _a.authStatusNotAllowedCallback, authStatusNotAllowedRenderReturn = _a.authStatusNotAllowedRenderReturn, needsAuth = _a.needsAuth, store = _a.store;
+        var _a = this, authCheckInProcessRenderReturn = _a.authCheckInProcessRenderReturn, authStatusNotAllowedCallback = _a.authStatusNotAllowedCallback, authStatusSuccessCallback = _a.authStatusSuccessCallback, authStatusNotAllowedRenderReturn = _a.authStatusNotAllowedRenderReturn, needsAuth = _a.needsAuth, store = _a.store;
         // Default value to be authenticated or not
         c.state = Object.assign({}, c.state, (_b = {},
             _b[AUTH_STATE_PARAM] = store.checkingAuthenticationStatus()
@@ -39,9 +40,11 @@ var AuthDependentComponentModule = (function () {
                 return authCheckInProcessRenderReturn;
             }
             if (needsAuth && authStatus === AUTH_STATUS_AUTHENTICATED) {
+                authStatusSuccessCallback();
                 return oldRender.call.apply(oldRender, [this].concat(args));
             }
             else if (!needsAuth && authStatus === AUTH_STATUS_ANONYMOUS) {
+                authStatusSuccessCallback();
                 return oldRender.call.apply(oldRender, [this].concat(args));
             }
             else {

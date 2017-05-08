@@ -14,6 +14,7 @@ export interface AuthModuleContructorObject {
     authCheckInProcessRenderReturn: any;
     authStatusNotAllowedCallback: Function;
     authStatusNotAllowedRenderReturn: any;
+    authStatusSuccessCallback?: Function;
 }
 export declare class AuthDependentComponentModule implements AuthModuleContructorObject, ComponentModule<CompatibleComponentInterface<any, any>> {
     store: AuthenticationStoreInterface;
@@ -21,6 +22,7 @@ export declare class AuthDependentComponentModule implements AuthModuleContructo
     authCheckInProcessRenderReturn: any;
     authStatusNotAllowedCallback: any;
     authStatusNotAllowedRenderReturn: any;
+    authStatusSuccessCallback: any;
     /**
      * isUserAuthenticated - promise that returns, whether user is authenticated;
      * async because we don't know and don't want to stop main UI thread when
